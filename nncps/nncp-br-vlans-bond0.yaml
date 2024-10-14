@@ -24,7 +24,7 @@ spec:
             stp: false
           port:
             - name: ovs0
-            - name: bond0
+            - name: enp1s0f0
               vlan:
                 mode: trunk
                 trunk-tags:
