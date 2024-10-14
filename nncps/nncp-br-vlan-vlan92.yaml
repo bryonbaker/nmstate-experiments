@@ -2,18 +2,18 @@
 apiVersion: nmstate.io/v1
 kind: NodeNetworkConfigurationPolicy
 metadata:
-  name: br-vlans.2004
+  name: br-vlans.92
 spec:
   desiredState:
     interfaces:
       - ipv4:
           address:
-            - ip: 10.0.204.2
+            - ip: 192.168.92.3
               prefix-length: 24
           enabled: true
-        name: br-vlans.2004
+        name: br-vlans.92
         state: up
         type: vlan
         vlan:
           base-iface: ovs0
-          id: 2004
+          id: 92

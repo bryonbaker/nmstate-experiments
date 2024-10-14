@@ -2,11 +2,11 @@
 apiVersion: nmstate.io/v1
 kind: NodeNetworkConfigurationPolicy
 metadata:
-  name: localnet-vlan2001
+  name: localnet-vlan92
 spec:
   desiredState:
     ovn:
       bridge-mappings:
         - bridge: br-vlans
-          localnet: vlan2001
+          localnet: vlan92
           state: present
