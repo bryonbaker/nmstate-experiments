@@ -1,8 +1,7 @@
----
 apiVersion: nmstate.io/v1
 kind: NodeNetworkConfigurationPolicy
 metadata:
-  name: br-vlans.92
+  name: enp1s0f0.92
 spec:
   desiredState:
     interfaces:
@@ -11,9 +10,16 @@ spec:
             - ip: 192.168.92.3
               prefix-length: 24
           enabled: true
-        name: br-vlans.92
+        name: enp1s0f0.92
         state: up
         type: vlan
         vlan:
-          base-iface: ovs0
+          base-iface: enp1s0f0
           id: 92
+    routes:
+      config:
+        - destination: 0.0.0.0/0
+          metric: 150
+          next-hop-address: 10.72.10.128
+          next-hop-interface: enp1s0f0.92
+          table-id: 92
