@@ -1,0 +1,19 @@
+apiVersion: policy.networking.k8s.io/v1alpha1
+kind: BaselineAdminNetworkPolicy
+metadata:
+  name: default
+  ### Catch-all DENY all Ingress/Egress Tenant traffic by DEFAULT
+spec:
+  egress:
+    - action: Deny
+      to:
+        - namespaces: {}
+  ingress:
+    - action: Deny
+      from:
+        - namespaces: {}
+  subject:
+    namespaces:
+      matchExpressions:
+        - key: zone
+          operator: Exists

@@ -1,0 +1,34 @@
+---
+apiVersion: nmstate.io/v1
+kind: NodeNetworkConfigurationPolicy
+metadata:
+  name: metallb-vrf2001
+spec:
+  desiredState:
+    interfaces:
+      - name: vrf2001
+        state: up
+        type: vrf
+        vrf:
+          port:
+            - br-vlans.2001
+          route-table-id: 2001
+    routes:
+      config:
+        - destination: 0.0.0.0/0
+          metric: 150
+          next-hop-address: 10.0.201.1
+          next-hop-interface: br-vlans.2001
+          table-id: 2001
+    route-rules:
+      config:
+        - ip-to: 172.30.0.0/16
+          priority: 998
+          route-table: 254
+        - ip-to: 10.128.0.0/14
+          priority: 998
+          route-table: 254
+        - ip-to: 169.254.169.0/29
+          priority: 998
+          route-table: 254
+  maxUnavailable: 1

@@ -1,0 +1,12 @@
+apiVersion: k8s.cni.cncf.io/v1beta1
+kind: MultiNetworkPolicy
+metadata:
+  annotations:
+    k8s.v1.cni.cncf.io/policy-for: 2001-dmz-br-vlans
+  name: deny-all-ingress-secondary-2001-dmz
+  namespace: 2001-dmz
+spec:
+  ingress: []
+  podSelector: {}
+  policyTypes:
+    - Ingress

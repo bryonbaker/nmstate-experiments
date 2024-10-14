@@ -1,0 +1,31 @@
+apiVersion: policy.networking.k8s.io/v1alpha1
+kind: AdminNetworkPolicy
+metadata:
+  name: pass-inter-namespace-traffic
+spec:
+  priority: 50
+  subject:
+    namespaces:
+      matchExpressions:
+        - key: zone
+          operator: Exists
+  ingress:
+    - action: Pass # Pass inter-tenant traffic to any defined NetworkPolicies
+      from:
+      - namespaces:
+          sameLabels:
+          - zone
+    - action: Allow   # Allow everything else other than same tenant traffic
+      from:
+      - namespaces:
+          namespaceSelector: {}
+  egress:
+    - action: Pass # Pass inter-tenant traffic to any defined NetworkPolicies
+      to:
+      - namespaces:
+          sameLabels:
+          - zone
+    - action: Allow   # Allow everything else other than same tenant traffic
+      to:
+      - namespaces:
+          namespaceSelector: {}

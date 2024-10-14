@@ -1,0 +1,4 @@
+---
+resources:
+  - netpol-allow-ingress-from-all-dmz.yaml
+  - netpol-dmz-allow-monitoring.yaml

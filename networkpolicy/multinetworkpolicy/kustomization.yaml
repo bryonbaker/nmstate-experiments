@@ -1,0 +1,4 @@
+---
+resources:
+  - multinetpol-allow-ingress-secondary-between-vms.yaml
+  - multinetpol-deny-all-ingress-secondary-2001-dmz.yaml

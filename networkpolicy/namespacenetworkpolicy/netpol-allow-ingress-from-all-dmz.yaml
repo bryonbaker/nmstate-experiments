@@ -1,0 +1,13 @@
+### Placing this in the DMZ ns overrides the BaselineAdminNetPol that prevents pod-additional-metallb from pinging welcome pod
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: allow-ingress-from-all-dmz-ns
+  namespace: 2001-dmz
+spec:
+  podSelector: {}
+  ingress:
+    - from:
+        - podSelector: {}
+  policyTypes:
+    - Ingress

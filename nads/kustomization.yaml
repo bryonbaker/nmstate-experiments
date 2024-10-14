@@ -1,0 +1,5 @@
+---
+resources:
+  - 2001-dmz-nads.yaml
+  - 2002-oss-nads.yaml
+  - 2003-it-nads.yaml

@@ -1,0 +1,5 @@
+---
+resources:
+  - peer-2001.yaml
+  - peer-2002.yaml
+  - peer-2003.yaml

@@ -1,0 +1,22 @@
+### Allowing Fedora Static VM to receive traffic from Fedora DHCP
+apiVersion: k8s.cni.cncf.io/v1beta1
+kind: MultiNetworkPolicy
+metadata:
+  annotations:
+    k8s.v1.cni.cncf.io/policy-for: 2001-dmz-br-vlans
+  name: allow-ingress-secondary-between-vms
+  namespace: 2001-dmz
+spec:
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: 2001-dmz
+        - podSelector:
+            matchLabels:
+              vm.kubevirt.io/name: fedora-dhcp
+  podSelector:
+    matchLabels:
+      vm.kubevirt.io/name: fedora-static
+  policyTypes:
+    - Ingress

@@ -1,0 +1,16 @@
+---
+resources: 
+#  - nncp-localnet-br-ex.yaml
+  - nncp-br-vlans-bond0.yaml
+  - nncp-br-vlan-vlan2001.yaml
+  - nncp-br-vlan-vlan2002.yaml
+  - nncp-br-vlan-vlan2003.yaml
+  - nncp-br-vlan-vlan2004.yaml
+  - nncp-br-vlan-vlan2005.yaml
+  - nncp-localnet-vlan2001.yaml
+  - nncp-localnet-vlan2002.yaml
+  - nncp-localnet-vlan2003.yaml
+  - nncp-metallb-vrf2001.yaml
+  - nncp-metallb-vrf2002.yaml
+  - nncp-metallb-vrf2003.yaml
+  - nncp-disable-interfaces.yaml

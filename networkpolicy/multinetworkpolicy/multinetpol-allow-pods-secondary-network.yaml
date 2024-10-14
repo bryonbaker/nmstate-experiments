@@ -1,0 +1,20 @@
+apiVersion: k8s.cni.cncf.io/v1beta1
+kind: MultiNetworkPolicy
+metadata:
+  annotations:
+    k8s.v1.cni.cncf.io/policy-for: 2001-dmz-br-vlans
+  name: allow-pods-secondary-network
+  namespace: 2001-dmz
+spec:
+  podSelector:
+    matchExpressions:
+      - key: vm.kubevirt.io/name
+        operator: DoesNotExist
+  ingress:
+    - from:
+      - podSelector:
+          matchExpressions:
+            - key: vm.kubevirt.io/name
+              operator: DoesNotExist
+  policyTypes:
+    - Ingress

@@ -1,0 +1,43 @@
+apiVersion: v1
+data:
+  allowedZone: '["dmz", "it", "oss"]'
+kind: ConfigMap
+metadata:
+  name: zone-config-mbb7f5885t
+---
+apiVersion: policy.networking.k8s.io/v1alpha1
+kind: AdminNetworkPolicy
+metadata:
+  name: pass-${ALLOWED_ZONES}-same-namespace
+spec:
+  egress:
+  - action: Pass
+    to:
+    - namespaces:
+        matchExpressions:
+        - key: zone
+          operator: In
+          values: << .allowedZones
+  - action: Allow
+    to:
+    - namespaces:
+        namespaceSelector: {}
+  ingress:
+  - action: Pass
+    from:
+    - namespaces:
+        matchExpressions:
+        - key: zone
+          operator: In
+          values: << .allowedZones
+  - action: Allow
+    from:
+    - namespaces:
+        namespaceSelector: {}
+  priority: 50
+  subject:
+    namespaces:
+      matchExpressions:
+      - key: zone
+        operator: In
+        values: << .allowedZones

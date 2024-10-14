@@ -1,0 +1,33 @@
+---
+apiVersion: nmstate.io/v1
+kind: NodeNetworkConfigurationPolicy
+metadata:
+  name: br-vlans
+spec:
+  desiredState:
+    interfaces:
+      - name: ovs0
+        type: ovs-interface
+        state: up
+        ipv4:
+          dhcp: false
+          enabled: false
+        ipv6:
+          dhcp: false
+          enabled: false
+      - name: br-vlans
+        type: ovs-bridge
+        state: up
+        bridge:
+          allow-extra-patch-ports: true
+          options:
+            stp: false
+          port:
+            - name: ovs0
+            - name: bond0
+              vlan:
+                mode: trunk
+                trunk-tags:
+                - id-range:
+                    min: 2001
+                    max: 2005

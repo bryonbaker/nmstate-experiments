@@ -1,0 +1,3 @@
+---
+resources:
+  - netpol-banp-default.yaml

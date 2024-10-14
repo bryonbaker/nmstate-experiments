@@ -1,0 +1,19 @@
+---
+apiVersion: nmstate.io/v1
+kind: NodeNetworkConfigurationPolicy
+metadata:
+  name: br-vlans.2005
+spec:
+  desiredState:
+    interfaces:
+      - ipv4:
+          address:
+            - ip: 10.0.205.2
+              prefix-length: 24
+          enabled: true
+        name: br-vlans.2005
+        state: up
+        type: vlan
+        vlan:
+          base-iface: ovs0
+          id: 2005

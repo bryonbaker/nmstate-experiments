@@ -1,0 +1,16 @@
+resources:
+  - netpol-anp-pass-allow-same-namespace.yaml
+
+configMapGenerator:
+  - name: zone-config
+    literals:
+      - allowedZone=["dmz", "it", "oss"]
+
+vars:
+  - name: ALLOWED_ZONES
+    objref:
+      kind: ConfigMap
+      name: zone-config
+      apiVersion: v1
+    fieldref:
+      fieldpath: data.allowedZone

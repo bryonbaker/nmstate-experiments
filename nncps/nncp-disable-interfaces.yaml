@@ -1,0 +1,16 @@
+---
+apiVersion: nmstate.io/v1
+kind: NodeNetworkConfigurationPolicy
+metadata:
+  name: disable-interfaces
+spec:
+  desiredState:
+    interfaces:
+    - name: ens10f0
+      state: down
+    - name: ens10f1
+      state: down
+    - name: ens10f2
+      state: down
+    - name: ens10f3
+      state: down
