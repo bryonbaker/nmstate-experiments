@@ -1,5 +1,0 @@
----
-resources:
-  - dmz-router-shard.yaml
-  - it-router-shard.yaml
-  - oss-router-shard.yaml
