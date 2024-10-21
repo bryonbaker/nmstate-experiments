@@ -1,5 +1,31 @@
 # Experiment to test VLANs
 
+To reprduce the experiment:  
+1. Install the NMState operator  
+2. Create an NMState instance  
+3. Deploy the bridge for VLANS.  
+      `Networking > NodeNetworkConfigurationPolicy > Create > With YAML`  
+      Paste the `br-vlans-nncp.yaml` content into the form and click `Create`.  
+4. Log on to the node and check the state of the bridge:  
+   `oc debug node/<nodename>`  
+   `chroot /host`  
+   `sh-5.1# ovs-vsctl show`  
+   ```
+   <snip>
+       Bridge br-vlans
+        Port eth1
+            Interface eth1
+                type: internal
+    ovs_version: "3.3.2-40.el9fdp"
+   ```
+5. Create a new project `shakeout-app  
+6. Deploy the two NetworkAttachmentDefintions (`vlan21-nad.yaml` and `vlan92-nad.yaml`)  
+   `oc apply -f vlan21-nad.yaml`  
+   `oc apply -f vlan92-nad.yaml`  
+7. Deploy the Shakeout App  
+   `oc apply -f shakeout-app-dep.yaml`  
+8. Connect to the pod in a shell and try pinging a VM on either VLAN.  
+
 ## This does not work yet... Notes are:
 
 I can ping the ip addresses on VLAN21 and VLAN92 from within the pod. But the bridge is not connecting through to the NAD because I cannot ping a VM on VLAN21 or 92 (ip addresses 10.10.21.1, 10.10.21.2, 10.10.92.1, 10.10.92.2). But these machines are on the VLAN because I can ping them from each other.  
