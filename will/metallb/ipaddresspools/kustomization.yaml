@@ -1,7 +1,0 @@
----
-resources:
-  - ip-pool-2001.yaml
-  - ip-pool-2002.yaml
-  - ip-pool-2003.yaml
-  - ip-pool-3.yaml
-#  - ip-pool-4.yaml

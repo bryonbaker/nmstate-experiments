@@ -1,6 +1,0 @@
----
-resources:
-  - bgppeers
-  - ipaddresspools
-  - bgpadvertisements
-#  - route-learning

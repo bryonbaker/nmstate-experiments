@@ -6,15 +6,6 @@ metadata:
 spec:
   desiredState:
     interfaces:
-      - name: ovs0
-        type: ovs-interface
-        state: up
-        ipv4:
-          dhcp: false
-          enabled: false
-        ipv6:
-          dhcp: false
-          enabled: false
       - name: br-vlans
         type: ovs-bridge
         state: up
@@ -23,8 +14,7 @@ spec:
           options:
             stp: false
           port:
-            - name: ovs0
-            - name: enp1s0f0
+            - name: <PORT NOT USED BY MACHINE-NETWORK i.e. different VLAN or separate NIC>
               vlan:
                 mode: trunk
                 trunk-tags:
