@@ -1,0 +1,16 @@
+apiVersion: nmstate.io/v1
+kind: NodeNetworkConfigurationPolicy
+metadata:
+  name: br-vlans
+spec:
+  desiredState:
+    interfaces:
+    - name: br-vlans
+      description: ovs bridge with eth1 as a port for use by VLANs
+      type: ovs-bridge
+      state: up
+      bridge:
+        options:
+          stp: false
+        port:
+        - name: eth1
