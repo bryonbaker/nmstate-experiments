@@ -32,6 +32,15 @@ To reprduce the experiment:
 I can ping the ip addresses on VLAN21 and VLAN92 from within the pod. But the bridge is not connecting through to the NAD because I cannot ping a VM on VLAN21 or 92 (ip addresses 10.10.21.1, 10.10.21.2, 10.10.92.1, 10.10.92.2). But these machines are on the VLAN because I can ping them from each other.  
 Note: IP address convention is `10.10.<vlan-tag>.n` where `n` is the machine number.
 
+NIC Configuration on server:
+
+| Name | MAC address |  IPv4 address | IPv6 address | Speed | Notes |
+|------|-------------|---------------|--------------|-------|-------|
+| enp0s20f0u5u2c2 | b0:3a:f2:b6:05:9f |  N/A | N/A | N/A | This is the BMC interface |
+| enp1s0f0np0 | 10:70:fd:2c:a7:98 | 136.144.62.61/31 |  N/A | 25000 Mbps | This is used by OCP at install. br-ex uses this interface. |
+| enp1s0f1np1 | 10:70:fd:2c:a7:99 | N/A | N/A | 25000 Mbps | This interface is not used. The state is `down` | 
+
+
 State of the network connections on the node are:
 
 ```
