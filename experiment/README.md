@@ -2,6 +2,7 @@
 
 To reprduce the experiment:  
 1. Install the NMState operator  
+   (https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html/networking/kubernetes-nmstate#k8s-nmstate-about-the-k8s-nmstate-operator)  
 2. Create an NMState instance  
 3. Deploy the bridge for VLANS.  
       `Networking > NodeNetworkConfigurationPolicy > Create > With YAML`  
@@ -30,6 +31,26 @@ To reprduce the experiment:
 
 I can ping the ip addresses on VLAN21 and VLAN92 from within the pod. But the bridge is not connecting through to the NAD because I cannot ping a VM on VLAN21 or 92 (ip addresses 10.10.21.1, 10.10.21.2, 10.10.92.1, 10.10.92.2). But these machines are on the VLAN because I can ping them from each other.  
 Note: IP address convention is `10.10.<vlan-tag>.n` where `n` is the machine number.
+
+State of the network connections on the node are:
+
+```
+# nmcli conn show
+NAME                UUID                                  TYPE           DEVICE          
+ovs-if-br-ex        ee719825-bdde-49b4-bca2-30ff523d3e47  ovs-interface  br-ex           
+Wired connection 1  14a4001b-03dd-3066-9f45-64662f037185  ethernet       enp0s20f0u5u2c2 
+br-ex               ecff0a99-67be-40c3-99b2-fce59792fc7a  ovs-bridge     br-ex           
+br-vlans-br         2b734d5d-81d4-4a53-987f-d8285c9d73e9  ovs-bridge     br-vlans        
+eth1-if             a07f02a4-ead7-4163-89f3-a8e906daf0b2  ovs-interface  eth1            
+eth1-port           6c5acc6b-230b-4861-bc6a-97e04fa6de41  ovs-port       eth1            
+ovs-if-phys0        01ae097f-fc98-4d42-aab5-9c3fa7698d0e  ethernet       enp1s0f0np0     
+ovs-port-br-ex      cfd97229-c8bb-4988-b314-32eb2a0b6ff5  ovs-port       br-ex           
+ovs-port-phys0      dac165a4-9554-41c7-8d72-487e5d24315d  ovs-port       enp1s0f0np0     
+lo                  0e5b24a7-fcd3-4fb4-880e-d2d857cf7827  loopback       lo              
+br-vlans            a14922ca-46ce-47f6-aa26-c6cbce4fe3d5  bridge         br-vlans        
+Wired connection 2  cc289fc3-2389-3fe0-bd99-60a7481e6cc0  ethernet       --              
+enp1s0f0np0         1ea8779e-7355-4497-b76c-4d60e5959ade  ethernet       --
+```
 
 The bridge is defined in OVS:
 
