@@ -14,7 +14,8 @@ spec:
       labels:
         app: shakeout-app
       annotations:
-        k8s.v1.cni.cncf.io/networks: '[{"name": "vlan21"}, {"name": "vlan92"}]'
+#        k8s.v1.cni.cncf.io/networks: '[{"name": "vlan21"}, {"name": "vlan92"}]'
+        k8s.v1.cni.cncf.io/networks: vlan21
     spec:
       containers:
       - name: shakeout-app

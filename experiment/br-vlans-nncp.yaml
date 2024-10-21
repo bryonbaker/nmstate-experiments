@@ -13,4 +13,4 @@ spec:
         options:
           stp: false
         port:
-        - name: eth1
+        - name: enp1s0f1np1
