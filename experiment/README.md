@@ -44,21 +44,20 @@ NIC Configuration on server:
 State of the network connections on the node are:
 
 ```
-# nmcli conn show
+# nmcli conn show             
 NAME                UUID                                  TYPE           DEVICE          
 ovs-if-br-ex        ee719825-bdde-49b4-bca2-30ff523d3e47  ovs-interface  br-ex           
 Wired connection 1  14a4001b-03dd-3066-9f45-64662f037185  ethernet       enp0s20f0u5u2c2 
+Wired connection 2  cc289fc3-2389-3fe0-bd99-60a7481e6cc0  ethernet       enp1s0f1np1     
 br-ex               ecff0a99-67be-40c3-99b2-fce59792fc7a  ovs-bridge     br-ex           
-br-vlans-br         2b734d5d-81d4-4a53-987f-d8285c9d73e9  ovs-bridge     br-vlans        
-eth1-if             a07f02a4-ead7-4163-89f3-a8e906daf0b2  ovs-interface  eth1            
-eth1-port           6c5acc6b-230b-4861-bc6a-97e04fa6de41  ovs-port       eth1            
+br-vlans-br         5bb292ca-e35b-40a0-a22b-d2a52dae0d3b  ovs-bridge     br-vlans        
+enp1s0f1np1-port    3e48b0a2-be1d-4ea9-839f-e4368017b6ab  ovs-port       enp1s0f1np1     
 ovs-if-phys0        01ae097f-fc98-4d42-aab5-9c3fa7698d0e  ethernet       enp1s0f0np0     
 ovs-port-br-ex      cfd97229-c8bb-4988-b314-32eb2a0b6ff5  ovs-port       br-ex           
 ovs-port-phys0      dac165a4-9554-41c7-8d72-487e5d24315d  ovs-port       enp1s0f0np0     
 lo                  0e5b24a7-fcd3-4fb4-880e-d2d857cf7827  loopback       lo              
-br-vlans            a14922ca-46ce-47f6-aa26-c6cbce4fe3d5  bridge         br-vlans        
-Wired connection 2  cc289fc3-2389-3fe0-bd99-60a7481e6cc0  ethernet       --              
-enp1s0f0np0         1ea8779e-7355-4497-b76c-4d60e5959ade  ethernet       --
+br-vlans            f5ad0b62-6161-4ead-9833-c27a737f2580  bridge         br-vlans        
+enp1s0f0np0         1ea8779e-7355-4497-b76c-4d60e5959ade  ethernet       -- 
 ```
 
 The bridge is defined in OVS:
