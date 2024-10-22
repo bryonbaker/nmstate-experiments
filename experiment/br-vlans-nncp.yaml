@@ -1,16 +1,24 @@
 apiVersion: nmstate.io/v1
 kind: NodeNetworkConfigurationPolicy
 metadata:
-  name: br-vlans
+  name: ovs-br-vlans-multiple-networks 
 spec:
+  nodeSelector:
+    node-role.kubernetes.io/worker: '' 
   desiredState:
     interfaces:
     - name: br-vlans
-      description: ovs bridge with eth1 as a port for use by VLANs
+      description: A dedicated bridge with enp1s0f1np1 as a port for use by multiple VLANs
       type: ovs-bridge
       state: up
+      ipv4:
+        enabled: false 
+      ipv6:
+        enabled: false  
       bridge:
+        allow-extra-patch-ports: true
         options:
-          stp: false
+          stp: 
+            enabled: false
         port:
         - name: enp1s0f1np1

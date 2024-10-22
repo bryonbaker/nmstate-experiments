@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: shakeout-app
+  namespace: vlan-tests
   labels:
     app: shakeout-app
 spec:
@@ -14,8 +15,7 @@ spec:
       labels:
         app: shakeout-app
       annotations:
-        k8s.v1.cni.cncf.io/networks: '[{"name": "vlan21"}, {"name": "vlan92"}]'
-#        k8s.v1.cni.cncf.io/networks: vlan21
+        k8s.v1.cni.cncf.io/networks: vlan-21
     spec:
       containers:
       - name: shakeout-app

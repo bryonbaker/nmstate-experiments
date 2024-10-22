@@ -91,11 +91,10 @@ sh-5.1# ovs-vsctl show
             Interface br-ex
                 type: internal
     Bridge br-vlans
-        Port eth1
-            Interface eth1
-                type: internal
+        Port enp1s0f1np1
+            Interface enp1s0f1np1
+                type: system
     ovs_version: "3.3.2-40.el9fdp"
-
 ```
 
 ## Deployment Details
