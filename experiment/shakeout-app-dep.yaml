@@ -15,7 +15,18 @@ spec:
       labels:
         app: shakeout-app
       annotations:
-        k8s.v1.cni.cncf.io/networks: vlan-21
+        # Annotation "annnotations.k8s.v1.cni.cncf.io/networks.name" must match spec.config.netAttachDefName in the NAD.
+        k8s.v1.cni.cncf.io/networks: |
+          [
+            {
+              "name": "vlan-21",
+              "mac": "de:ad:be:ef:00:01",
+              "interface": "net1",
+              "ips": [
+                "10.10.21.3/24"
+              ]
+            }
+          ]
     spec:
       containers:
       - name: shakeout-app

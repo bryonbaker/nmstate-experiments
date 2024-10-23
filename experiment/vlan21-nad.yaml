@@ -5,22 +5,15 @@ metadata:
     description: Network 21 via OVS Bridge
   name: vlan-21
   namespace: vlan-tests
-spec:   # spec.config.name must match spec.desiredState.ovn.localnet in the NNCP
+spec:   # Note: spec.config.name must match spec.desiredState.ovn.localnet in the NNCP
+        # Schema doco url: https://docs.openshift.com/container-platform/4.17/networking/multiple_networks/configuring-additional-network.html#configuration-ovnk-network-plugin-json-object_configuring-additional-network
   config: |-
     {
       "cniVersion": "0.3.1",
-      "name": "vlan-21",
+      "name": "localnet-vlan-21",
       "type": "ovn-k8s-cni-overlay",
       "topology": "localnet",
       "netAttachDefName": "vlan-tests/vlan-21",
       "vlanID": 21,
-      "mtu": 1500,
-      "ipam": {
-        "type": "static",
-        "addresses": [
-          {
-            "address": "10.10.21.3/24"
-          }
-        ]
-      }
+      "mtu": 1500
     }
