@@ -3,9 +3,12 @@ kind: NetworkAttachmentDefinition
 metadata:
   annotations:
     description: Network 21 via OVS Bridge
-  name: vlan-21
+  name: vlan-21-nad
   namespace: vlan-tests
-spec:   # Note: spec.config.name must match spec.desiredState.ovn.localnet in the NNCP
+spec:   
+        # Notes: 
+        # spec.config.name must match spec.desiredState.ovn.localnet in the NNCP
+        # netAttachDefName is the concatenation of the namespace and NAD name.
         # Schema doco url: https://docs.openshift.com/container-platform/4.17/networking/multiple_networks/configuring-additional-network.html#configuration-ovnk-network-plugin-json-object_configuring-additional-network
   config: |-
     {
@@ -13,7 +16,7 @@ spec:   # Note: spec.config.name must match spec.desiredState.ovn.localnet in th
       "name": "localnet-vlan-21",
       "type": "ovn-k8s-cni-overlay",
       "topology": "localnet",
-      "netAttachDefName": "vlan-tests/vlan-21",
+      "netAttachDefName": "vlan-tests/vlan-21-nad",
       "vlanID": 21,
       "mtu": 1500
     }
